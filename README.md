@@ -2,4 +2,7 @@
 펄송 개인과제
 
 #Day1
-테스트(학습)용 app, 제출용 app 생성
+테스트(학습): app, 제출: app 생성
+
+#Day2
+테스트(학습): top-tap navigation 구현, 제출: top-tap navigation 라이브러리 설치
