@@ -13,6 +13,7 @@ const Graph = ({navigation, route}) => {
             const key = cur.creationTime.split(' ')[0]
             if(!(key in acc)){
                 acc[key] = [0,0]
+            }
             acc[key][0] += +cur.sleep
             acc[key][1] ++
             return acc
