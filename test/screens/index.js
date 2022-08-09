@@ -47,7 +47,7 @@ const Index = () => {
         const newDefecation = []
         for(const key in data){
             const [sum,count] = data[key]
-            newDefecation.push([key,sum,count])
+            newDefecation.push([key,sum/count,count])
         }
 
         dispatch({
@@ -93,7 +93,7 @@ const Index = () => {
 
 const styles = StyleSheet.create({
     container:{
-      flex:1
+      flex:1,
     },
     tabHeader:{
       backgroundColor:'#FF6701',
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
       fontWeight:'bold',
     },
     tabIndicator:{
-      backgroundColor:'#1F1F1F',
+      backgroundColor:'rgba(255, 255, 255, 0.5)',
       height:2
     },
   });

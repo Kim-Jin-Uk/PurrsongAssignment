@@ -18,3 +18,6 @@ assignment 디렉토리는 제출용으로 구현한 앱입니다
 
 # Day4
 테스트(학습): react-redux 세팅 및 리듀서 구현, LineGraph 컴포넌트 구현
+
+# Day5
+테스트(학습): Button (시간 단위 변경, 무게 단위 변경) 구현 

@@ -2,7 +2,6 @@ import { LineChart } from 'react-native-chart-kit'
 import { Dimensions } from 'react-native'
 import FlashMessage, { showMessage } from "react-native-flash-message";
 const LineGraph = (props) => {
-    console.log(props)
     return(
         <>
         <FlashMessage duration={1000} />
@@ -14,8 +13,8 @@ const LineGraph = (props) => {
                     strokeWidth: 2,
                 },],
             }}
-            width={Dimensions.get('window').width - 16}
-            height={200}
+            width={Dimensions.get('window').width}
+            height={180}
             onDataPointClick={({ index, value, getColor }) =>
                 showMessage({
                     message: `${value.toFixed(props.isFloat ? 2 : 0)}`,
@@ -24,11 +23,11 @@ const LineGraph = (props) => {
                 })
             }
             chartConfig={{
-                backgroundColor: '#1cc910',
-                backgroundGradientFrom: '#eff3ff',
-                backgroundGradientTo: '#efefef',
+                backgroundColor:'rgba(0, 0, 0, 0.0)',
+                backgroundGradientFrom: '#FFFFFF',
+                backgroundGradientTo: '#FFFFFF',
                 decimalPlaces: props.isFloat ? 2 : 0,
-                color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                color: (opacity = 0) => `rgba(0, 0, 0, ${opacity})`,
             }}
         />
         </>
