@@ -16,13 +16,13 @@ const Index = () => {
   
     const refineData = useCallback((data,label)=>{
         return data.reduce((acc,cur,idx)=>{
-        const key = cur.creationTime.split(' ')[0]
-        if(!(key in acc)){
-            acc[key] = [0,0]
-        }
-        acc[key][0] += +cur[label]
-        acc[key][1] ++
-        return acc
+            const key = cur.creationTime.split(' ')[0]
+            if(!(key in acc)){
+                acc[key] = [0,0]
+            }
+            acc[key][0] += +cur[label]
+            acc[key][1] ++
+            return acc
         },{})
     },[])
 
@@ -36,8 +36,8 @@ const Index = () => {
         }
 
         dispatch({
-        type: GET_SLEEP_DATA,
-        data: newSleep,
+            type: GET_SLEEP_DATA,
+            data: newSleep,
         })
     },[sleep])
 
@@ -51,8 +51,8 @@ const Index = () => {
         }
 
         dispatch({
-        type: GET_DEFECATION_DATA,
-        data: newDefecation,
+            type: GET_DEFECATION_DATA,
+            data: newDefecation,
         })
     },[defecation])
 

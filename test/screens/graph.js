@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Button } from "react-native"
 import { useSelector } from "react-redux"
 import LineGraph from "../components/LineGraph"
 
-const Graph = ({navigation, route}) => {
+const Graph = () => {
     const { defecationData,sleepData } = useSelector((state) => state);
     const [divTime, setDivTime] = useState(1)
     const [timeText,setTimeText] = useState('second')
