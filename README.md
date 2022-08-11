@@ -23,3 +23,6 @@
 # Day6
 - 테스트(학습): RecyclerListView 구현
 ---
+# Day7
+- 제출: eslint, prettier 설정, top-tap navigation 구현, react-redux 세팅 및 리듀서 구현
+---

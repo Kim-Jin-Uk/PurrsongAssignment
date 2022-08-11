@@ -43,13 +43,13 @@ const Index = () => {
 
     useEffect(() => {
         const data = refineData(defecation,'weight')
-
+        console.log(data)
         const newDefecation = []
         for(const key in data){
             const [sum,count] = data[key]
             newDefecation.push([key,sum/count,count])
         }
-
+        console.log(newDefecation)
         dispatch({
             type: GET_DEFECATION_DATA,
             data: newDefecation,
