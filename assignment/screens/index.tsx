@@ -71,7 +71,7 @@ const Index = () => {
       const [weight, duration, count] = data[key];
       newDefecation.push([key, weight / count, duration / count, count]);
     }
-    console.log(newDefecation);
+
     dispatch({
       type: GET_DEFECATION_DATA,
       data: newDefecation,
