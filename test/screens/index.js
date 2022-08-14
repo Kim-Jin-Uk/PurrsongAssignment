@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Table from './table';
 import Graph from './graph';
 import { useDispatch } from 'react-redux';
-import defecation from '../datas/defecation.json'
+import defecation from '../../assignment/datas/defecation.json'
 import sleep from '../datas/sleep.json'
 import { GET_DEFECATION_DATA, GET_SLEEP_DATA } from '../reducers/main';
 import { useCallback, useEffect } from 'react';
