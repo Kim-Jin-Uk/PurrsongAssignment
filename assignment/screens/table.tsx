@@ -8,8 +8,10 @@ import {
 import ListItem from '../components/List/ListItem';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers/main';
+import DefaultButton from '../components/Button/defaultButton';
 
 const Table = () => {
+  const [reverse, setReverse] = useState(false);
   const [dataProvider, setDataProvider] = useState(
     new DataProvider((row1, row2) => row1 !== row2),
   );
@@ -56,7 +58,7 @@ const Table = () => {
   };
   const makeMergeData = useCallback(() => {
     // 제목 행 생성
-    const newMergeData: (string | number)[][] = [
+    let newMergeData: (string | number)[][] = [
       ['날짜', '배변량', '배변 시간', '배변 횟수', '수면 시간'],
     ];
     // 평균을 구하기 위한 길이 추출
@@ -72,6 +74,8 @@ const Table = () => {
       Number.MAX_VALUE,
       Number.MAX_VALUE,
     ];
+    // 합칠 데이터셋
+    const addData: (string | number)[][] = [];
     // 데이터 합치기 -> 배변데이터와 수면데이터의 개수는 동일하다 가정
     defecationData.forEach(([date, w, d, c]: (string | number)[], idx) => {
       // 숫자 타입을 확실시하기 위해 새 변수로 지정
@@ -82,7 +86,7 @@ const Table = () => {
         c,
       ] as number[];
       // 실수 데이터는 2자리까지만 표기, 날짜는 YY-MM-DD 형식
-      newMergeData.push([
+      addData.push([
         date.toString().substring(2),
         +(weight as number).toFixed(2),
         +(duration as number).toFixed(2),
@@ -122,6 +126,9 @@ const Table = () => {
       (minCount + avrCount) / 2,
       (minTime + avrTime) / 2,
     ];
+    // 정렬 방식에 따라 다르게 합침
+    if (reverse) newMergeData = newMergeData.concat(addData.reverse());
+    else newMergeData = newMergeData.concat(addData);
     // 새 병합 데이터 리턴
     return newMergeData.map(([date, w, d, c, t]: (string | number)[], idx) => {
       if (idx === 0)
@@ -160,11 +167,14 @@ const Table = () => {
 
       return [date, weight, duration, count, time].concat(statusData);
     });
-  }, [defecationData, sleepData]);
+  }, [defecationData, sleepData, reverse]);
+  const onPressSortButton = useCallback(() => {
+    setReverse(!reverse);
+  }, [reverse]);
 
   useEffect(() => {
     setMergeData(makeMergeData());
-  }, [defecationData, sleepData]);
+  }, [defecationData, sleepData, reverse]);
   useEffect(() => {
     const newDataProvider = new DataProvider(
       (row1, row2) => row1 !== row2,
@@ -188,6 +198,12 @@ const Table = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.sortButtonWrapper}>
+        <DefaultButton
+          text={reverse ? ' 최신순 ▼ ' : ' 최신순 ▲ '}
+          onPress={onPressSortButton}
+        />
+      </View>
       <View style={styles.divider} />
       <RecyclerListView
         layoutProvider={layoutProvider}
@@ -204,6 +220,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     paddingTop: 10,
     paddingBottom: 10,
+  },
+  sortButtonWrapper: {
+    width: '100%',
+    height: 30,
+    alignItems: 'flex-end',
+    marginBottom: 10,
   },
   divider: {
     width: '100%',
