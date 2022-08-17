@@ -1,5 +1,6 @@
 import {
   Alert,
+  Platform,
   StyleSheet,
   Text,
   TextStyle,
@@ -39,7 +40,9 @@ const Cell = (props: {
         message = `${value} 이므로 평균(${column})보다 ${
           status === 'low' ? '낮습니다.' : '높습니다.'
         }`;
-      Alert.alert(title, message, [{ text: '확인' }]);
+      Platform.OS === 'web'
+        ? window.confirm([title, message].join('\n'))
+        : Alert.alert(title, message, [{ text: '확인' }]);
     },
     [props],
   );

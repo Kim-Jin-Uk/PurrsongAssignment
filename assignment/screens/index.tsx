@@ -1,4 +1,4 @@
-import { StyleSheet, StatusBar } from 'react-native';
+import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Table from './table';
@@ -80,38 +80,43 @@ const Index = () => {
 
   return (
     <>
-      <StatusBar />
-      <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="Graph"
-          screenOptions={{
-            tabBarActiveTintColor: '#FFFFFF',
-            tabBarLabelStyle: styles.tabText,
-            tabBarStyle: styles.tabHeader,
-            tabBarIndicatorStyle: styles.tabIndicator,
-          }}
-        >
-          <Tab.Screen
-            name="Graph"
-            component={Graph}
-            options={{
-              title: '그래프로 보기',
+      <SafeAreaView style={styles.safeView}>
+        <StatusBar />
+        <NavigationContainer>
+          <Tab.Navigator
+            initialRouteName="Graph"
+            screenOptions={{
+              tabBarActiveTintColor: '#FFFFFF',
+              tabBarLabelStyle: styles.tabText,
+              tabBarStyle: styles.tabHeader,
+              tabBarIndicatorStyle: styles.tabIndicator,
             }}
-          />
-          <Tab.Screen
-            name="Table"
-            component={Table}
-            options={{
-              title: '표로 보기',
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
+          >
+            <Tab.Screen
+              name="Graph"
+              component={Graph}
+              options={{
+                title: '그래프로 보기',
+              }}
+            />
+            <Tab.Screen
+              name="Table"
+              component={Table}
+              options={{
+                title: '표로 보기',
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  safeView: {
+    flex: 1,
+  },
   tabHeader: {
     backgroundColor: '#FF6701',
   },

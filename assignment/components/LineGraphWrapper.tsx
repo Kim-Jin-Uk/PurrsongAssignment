@@ -102,7 +102,7 @@ const LineGraph = (props: {
       </View>
       <View style={styles.graphWrapper}>
         {hasMoreLeft ? (
-          <TextButton text={'◀︎'} onPress={onPressMoreLeft} />
+          <TextButton text={'◀︎︎'} onPress={onPressMoreLeft} />
         ) : (
           <TextButton text={undefined} onPress={undefined} />
         )}
@@ -116,11 +116,19 @@ const LineGraph = (props: {
                   strokeWidth: 3,
                 },
                 {
-                  data: [Math.min(...graphData.map((v) => v / div)) * 0.9],
+                  data: [
+                    isFloat
+                      ? Math.min(...graphData.map((v) => v / div)) * 0.9
+                      : Math.min(...graphData.map((v) => v / div)) - 1,
+                  ],
                   withDots: false,
                 },
                 {
-                  data: [Math.max(...graphData.map((v) => v / div)) * 1.1],
+                  data: [
+                    isFloat
+                      ? Math.max(...graphData.map((v) => v / div)) * 1.1
+                      : Math.max(...graphData.map((v) => v / div)) + 1,
+                  ],
                   withDots: false,
                 },
               ],
@@ -171,7 +179,7 @@ const LineGraph = (props: {
               backgroundColor: 'rgba(0, 0, 0, 0.0)',
               backgroundGradientFrom: '#FFFFFF',
               backgroundGradientTo: '#FFFFFF',
-              decimalPlaces: isFloat ? 2 : 0,
+              decimalPlaces: 2,
               color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
             }}
           />
